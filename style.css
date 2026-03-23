@@ -1,4 +1,8 @@
 /* Global dark mode base */
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -10,6 +14,7 @@ body {
 header {
   background-image: url(images/header.jpg);
   background-size: cover;
+  background-position: center;
   width: 100%;
   min-height: 520px;
   padding-bottom: 40px;
@@ -23,20 +28,22 @@ nav {
   background-repeat: no-repeat;
   background-position: 15px 10px;
   padding: 25px;
-  height: 110px;
+  min-height: 110px;
   background-color: rgba(15, 23, 42, 0.8); /* translucent dark */
   backdrop-filter: blur(6px);
 }
 
-/* Horizontal nav links */
 nav ul {
-  margin-left: 100px;
+  margin: 0;
+  padding: 0;
+  margin-left: 140px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 nav li {
-  display: inline-block;
-  list-style-type: none;
-  margin-right: 20px;
+  list-style: none;
 }
 
 /* Nav link styling */
@@ -55,19 +62,20 @@ nav a:hover {
 }
 
 /* Hero text */
+.hero-content,
 header div {
   margin: 50px 0 0 100px;
   color: #f1f5f9; /* bright gray */
 }
 
 header h2 {
-  font-size: 52px;
+  font-size: clamp(2rem, 4vw, 3.5rem);
   margin-bottom: 0.75rem;
   letter-spacing: 1px;
 }
 
 header p {
-  font-size: 26px;
+  font-size: clamp(1rem, 2vw, 1.6rem);
   margin-bottom: 2rem;
 }
 
@@ -80,41 +88,55 @@ header div a {
   border-radius: 6px;
   font-size: 16px;
   transition: 0.3s ease;
+  display: inline-block;
 }
 
 header div a:hover {
   background-color: #3b82f6; /* bright blue */
 }
 
+/* Cards container */
+main {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+  padding: 30px 15px;
+  overflow-x: auto;
+}
+
 /* Cards */
 .card {
-  float: left;
-  display: inline-block;
-  width: calc(33% - 20px);
-  margin: 15px 10px;
+  flex: 0 0 320px;
+  max-width: 320px;
   background-color: #1e293b; /* slate gray */
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .card img {
   width: 100%;
+  display: block;
   filter: brightness(0.85);
 }
 
+.card-content,
 .card div {
   padding: 25px 15px;
 }
 
 .card h3 {
-  font-size: 18px;
+  font-size: 1.1rem;
   margin-bottom: 10px;
   color: #93c5fd; /* soft blue */
 }
 
-.card div.description {
-  font-size: 14px;
+.card .description {
+  font-size: 0.9rem;
   line-height: 1.5;
   color: #cbd5e1; /* light gray */
 }
@@ -130,7 +152,9 @@ header div a:hover {
   background-size: contain;
   background-repeat: no-repeat;
   padding-left: 28px;
-  margin-right: 15px;
+  margin-right: 34px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .social .heart {
@@ -141,4 +165,41 @@ header div a:hover {
 .social .comment {
   background-image: url(./images/comment.png);
   filter: invert(80%);
+}
+
+@media (max-width: 900px) {
+  nav ul {
+    margin-left: 80px;
+  }
+
+  header div {
+    margin: 40px 20px 0;
+  }
+
+  .card {
+    flex: 1 1 calc(50% - 30px);
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    padding: 15px;
+    min-height: auto;
+    background-position: 10px 10px;
+  }
+
+  nav ul {
+    margin-left: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  header div {
+    margin: 30px 16px;
+  }
+
+  .card {
+    flex: 1 1 100%;
+  }
 }
